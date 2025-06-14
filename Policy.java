@@ -22,6 +22,11 @@ public class Policy
         policyHolderHeight = 0.0;
         policyHolderWeight = 0.0;
     }
+/**
+ * the policy class stores information about an insurance policy
+ * including the provider name and details about the policyholder.
+ */
+public class Policy {
 
     // constructor with arguments, sets values based on user input
     public Policy(String number, String provider, String firstName, String lastName, int age, String smoking, double height, double weight)
@@ -38,49 +43,84 @@ public class Policy
 
     // getter methods to return values
     public String getPolicyNumber() {
+    
+   /**
+    * this constructor sets the values for a policy object
+    * @param policyNumber the policy number
+    * @param providerName the name of the insurance provider
+    * @param policyholderFirstName the policyholder's first name
+    * @param policyholderLastName the policyholder's last name
+    * @param policyholderAge the policyholder's age
+    * @param smokingStatus whether the policyholder is a smoker or not
+    * @param height the policyholder's height in inches
+    * @param weight the policyholder's weight in pounds
+    */
+    }
+      
+   /**
+    * gets the policy number
+    * @return the policy number
+    */
+
+        public int getPolicyNumber() {
         return policyNumber;
     }
+      /**
+    * gets the provider name
+    * @return the provider name
+    */
 
-    public String getProviderName() {
+        public String getProviderName() {
         return providerName;
     }
+   /**
+    * gets the policyholder's first name
+    * @return the first name
+    */
 
-    public String getPolicyHolderFirstName() {
-        return policyHolderFirstName;
+        public String getPolicyholderFirstName() {
+        return policyholderFirstName;
+    }
+   /**
+    * gets the policyholder's last name
+    * @return the last name
+    */
+
+       public String getPolicyholderLastName() {
+        return policyholderLastName;
+    }
+   /**
+    * gets the policyholder's age
+    * @return the age
+    */
+
+        public int getPolicyholderAge() {
+        return policyholderAge;
+    }
+   /**
+    * gets the smoking status of the policyholder
+    * @return "smoker" or "non-smoker"
+    */
+
+        public String getSmokingStatus() {
+        return smokingStatus;
+    }
+   /**
+    * gets the height of the policyholder
+    * @return the height in inches
+    */
+
+    public double getHeight() {
+        return height;
     }
 
-    public String getPolicyHolderLastName() {
-        return policyHolderLastName;
-    }
-
-    public int getPolicyHolderAge() {
-        return policyHolderAge;
-    }
-
-    public String getPolicyHolderSmokingStatus() {
-        return policyHolderSmokingStatus;
-    }
-
-    public double getPolicyHolderHeight() {
-        return policyHolderHeight;
-    }
-
-    public double getPolicyHolderWeight() {
-        return policyHolderWeight;
-    }
-
-    // setter methods to update values
-    public void setPolicyNumber(String number) {
-        policyNumber = number;
-    }
+   /**
+    * gets the weight of the policyholder
+    * @return the weight in pounds
+    */
     
-
-    public void setProviderName(String provider) {
-        providerName = provider;
-    }
-
-    public void setPolicyHolderFirstName(String firstName) {
-        policyHolderFirstName = firstName;
+    public double getWeight() {
+        return weight;
     }
 
     public void setPolicyHolderLastName(String lastName) {
@@ -107,34 +147,42 @@ public class Policy
     public double calculateBMI()
     {
         return (policyHolderWeight * 703) / (policyHolderHeight * policyHolderHeight);
+   /**
+    * calculates the bmi using height and weight
+    * @return the bmi value
+    */
+    
+    public double calculateBMI() {
+        return (weight * 703) / (height * height);
     }
 
     // method to calculate the policy price based on rules
     public double calculatePolicyPrice()
     {
         double price = 600;
+   /**
+    * calculates the price of the policy
+    * adds fees based on smoking status and age
+    * @return the total policy price
+    */
+  
+    public double calculatePolicyPrice() {
+        final double BASE_FEE = 600.0;
+        double price = BASE_FEE;
 
-        // if over 50 add extra
-        if (policyHolderAge > 50)
-        {
+        if (policyholderAge > 50) {
             price += 75;
         }
 
-        // if smoker add extra
-        if (policyHolderSmokingStatus.equalsIgnoreCase("smoker"))
-        {
+        if (smokingStatus.equalsIgnoreCase("smoker")) {
             price += 100;
         }
 
-        // check bmi and add extra if needed
         double bmi = calculateBMI();
-        if (bmi > 35)
-        {
+        if (bmi > 35) {
             price += (bmi - 35) * 20;
         }
 
         return price;
     }
-    
 }
-
