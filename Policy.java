@@ -1,188 +1,113 @@
+/**
+ * the Policy class stores information about an insurance policy,
+ * including the provider name and a reference to the PolicyHolder.
+ */
 public class Policy
 {
-    // fields to store info about the insurance policy
     private String policyNumber;
     private String providerName;
-    private String policyHolderFirstName;
-    private String policyHolderLastName;
-    private int policyHolderAge;
-    private String policyHolderSmokingStatus;
-    private double policyHolderHeight;
-    private double policyHolderWeight;
+    private PolicyHolder policyHolder; // the person
 
-    // no-arg constructor, sets everything to default values
+
+    /**
+     * no-arg constructor
+     */
     public Policy()
     {
         policyNumber = "";
         providerName = "";
-        policyHolderFirstName = "";
-        policyHolderLastName = "";
-        policyHolderAge = 0;
-        policyHolderSmokingStatus = "non-smoker";
-        policyHolderHeight = 0.0;
-        policyHolderWeight = 0.0;
-    }
-/**
- * the policy class stores information about an insurance policy
- * including the provider name and details about the policyholder.
- */
-public class Policy {
+        policyHolder = null;
 
-    // constructor with arguments, sets values based on user input
-    public Policy(String number, String provider, String firstName, String lastName, int age, String smoking, double height, double weight)
+     }
+     
+     /**
+     * constructor with arguments, sets values based on user input
+     * @param number the policy number
+     * @param provider the provider name
+     * @param holder the policyholder object
+     */
+   
+        public Policy(String number, String provider, PolicyHolder holder)
     {
         policyNumber = number;
         providerName = provider;
-        policyHolderFirstName = firstName;
-        policyHolderLastName = lastName;
-        policyHolderAge = age;
-        policyHolderSmokingStatus = smoking;
-        policyHolderHeight = height;
-        policyHolderWeight = weight;
+        policyHolder = holder;
     }
 
-    // getter methods to return values
-    public String getPolicyNumber() {
     
-   /**
-    * this constructor sets the values for a policy object
-    * @param policyNumber the policy number
-    * @param providerName the name of the insurance provider
-    * @param policyholderFirstName the policyholder's first name
-    * @param policyholderLastName the policyholder's last name
-    * @param policyholderAge the policyholder's age
-    * @param smokingStatus whether the policyholder is a smoker or not
-    * @param height the policyholder's height in inches
-    * @param weight the policyholder's weight in pounds
-    */
-    }
       
    /**
     * gets the policy number
     * @return the policy number
     */
 
-        public int getPolicyNumber() {
+        public String getPolicyNumber() 
+        {
+        
         return policyNumber;
-    }
+        
+        }
+        
       /**
-    * gets the provider name
-    * @return the provider name
-    */
+       * gets the provider name
+       * @return the provider name
+       */
 
-        public String getProviderName() {
+        public String getProviderName() 
+        {
+        
         return providerName;
-    }
+        
+        }
    /**
-    * gets the policyholder's first name
-    * @return the first name
+    * gets the policyholder object
+    * @return the policyholder
     */
-
-        public String getPolicyholderFirstName() {
-        return policyholderFirstName;
-    }
-   /**
-    * gets the policyholder's last name
-    * @return the last name
-    */
-
-       public String getPolicyholderLastName() {
-        return policyholderLastName;
-    }
-   /**
-    * gets the policyholder's age
-    * @return the age
-    */
-
-        public int getPolicyholderAge() {
-        return policyholderAge;
-    }
-   /**
-    * gets the smoking status of the policyholder
-    * @return "smoker" or "non-smoker"
-    */
-
-        public String getSmokingStatus() {
-        return smokingStatus;
-    }
-   /**
-    * gets the height of the policyholder
-    * @return the height in inches
-    */
-
-    public double getHeight() {
-        return height;
-    }
-
-   /**
-    * gets the weight of the policyholder
-    * @return the weight in pounds
-    */
-    
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setPolicyHolderLastName(String lastName) {
-        policyHolderLastName = lastName;
-    }
-
-    public void setPolicyHolderAge(int age) {
-        policyHolderAge = age;
-    }
-
-    public void setPolicyHolderSmokingStatus(String smoking) {
-        policyHolderSmokingStatus = smoking;
-    }
-
-    public void setPolicyHolderHeight(double height) {
-        policyHolderHeight = height;
-    }
-
-    public void setPolicyHolderWeight(double weight) {
-        policyHolderWeight = weight;
-    }
-
-    // method to calculate bmi using the formula in the instructions
-    public double calculateBMI()
+    public PolicyHolder getPolicyHolder()
     {
-        return (policyHolderWeight * 703) / (policyHolderHeight * policyHolderHeight);
-   /**
-    * calculates the bmi using height and weight
-    * @return the bmi value
-    */
-    
-    public double calculateBMI() {
-        return (weight * 703) / (height * height);
+        return policyHolder;
     }
 
-    // method to calculate the policy price based on rules
-    public double calculatePolicyPrice()
-    {
-        double price = 600;
-   /**
+    /**
     * calculates the price of the policy
-    * adds fees based on smoking status and age
-    * @return the total policy price
+    * adds fees based on age, smoking status, and BMI
+    * @return the total price
     */
   
-    public double calculatePolicyPrice() {
+    public double calculatePolicyPrice() 
+    {
         final double BASE_FEE = 600.0;
         double price = BASE_FEE;
 
-        if (policyholderAge > 50) {
+        if (policyHolder.getAge() > 50) 
+        {
             price += 75;
         }
 
-        if (smokingStatus.equalsIgnoreCase("smoker")) {
+        if (policyHolder.getSmokingStatus().equalsIgnoreCase("smoker"))
+
+        {
             price += 100;
         }
 
-        double bmi = calculateBMI();
-        if (bmi > 35) {
+        double bmi = policyHolder.calculateBMI();
+        if (bmi > 35) 
+        {
             price += (bmi - 35) * 20;
         }
 
         return price;
+    }
+
+
+    /**
+     * returns the full policy info using toString
+     */
+    public String toString()
+    {
+        return "Policy Number: " + policyNumber + "\n" +
+               "Provider Name: " + providerName + "\n" +
+               policyHolder.toString() + "\n" +
+               "Policy Price: $" + String.format("%.2f", calculatePolicyPrice());
     }
 }
