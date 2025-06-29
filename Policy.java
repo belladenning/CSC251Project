@@ -7,7 +7,7 @@ public class Policy
     private String policyNumber;
     private String providerName;
     private PolicyHolder policyHolder; // the person
-
+    private static int policyCount = 0; // tracks # of policy objects
 
     /**
      * no-arg constructor
@@ -17,6 +17,7 @@ public class Policy
         policyNumber = "";
         providerName = "";
         policyHolder = null;
+        policyCount++;
 
      }
      
@@ -32,10 +33,9 @@ public class Policy
         policyNumber = number;
         providerName = provider;
         policyHolder = holder;
+        policyCount++;
     }
-
-    
-      
+ 
    /**
     * gets the policy number
     * @return the policy number
@@ -98,16 +98,22 @@ public class Policy
 
         return price;
     }
-
-
-    /**
      * returns the full policy info using toString
-     */
+    
     public String toString()
     {
         return "Policy Number: " + policyNumber + "\n" +
                "Provider Name: " + providerName + "\n" +
                policyHolder.toString() + "\n" +
                "Policy Price: $" + String.format("%.2f", calculatePolicyPrice());
+    }
+
+    /**
+     * gets the number of Policy objects created
+     * @return the policy count
+     */
+    public static int getPolicyCount()
+    {
+        return policyCount;
     }
 }
