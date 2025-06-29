@@ -65,7 +65,14 @@ public class Policy
     */
     public PolicyHolder getPolicyHolder()
     {
-        return policyHolder;
+        return new PolicyHolder(
+            policyHolder.getFirstName(),
+        policyHolder.getLastName(),
+        policyHolder.getAge(),
+        policyHolder.getSmokingStatus(),
+        policyHolder.getHeight(),
+        policyHolder.getWeight()
+       );
     }
 
     /**
