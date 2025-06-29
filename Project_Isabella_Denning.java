@@ -33,17 +33,25 @@ public class Project_Isabella_Denning
             double height = Double.parseDouble(inputFile.nextLine());
             double weight = Double.parseDouble(inputFile.nextLine());
 
-            // create a new policy object with this information
-            Policy policy = new Policy(policyNumber, providerName, firstName, lastName,
-                                        age, smokingStatus, height, weight);
+            // create a new PolicyHolder object with personal info
+            PolicyHolder holder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
+            
+            // create a Policy object using the holder object
+            Policy policy = new Policy(Integer.toString(policyNumber), providerName, holder);
+            
+            // add it to the list
             policyList.add(policy);
+
         }
+   
+           // close the file when done
+           inputFile.close();
+   
+           // loop through the list and print out all of the policy information   
+           for (Policy policy : policyList) {
+           System.out.println(policy); // calls toString()
+           System.out.println(); // extra line between policies
+           }
 
-        // close the file when done
-        inputFile.close();
-
-        // loop through the list and print out all of the policy information   
-        for (Policy policy : policyList) {
-
-    }
-}
+    } 
+} 
